@@ -10,14 +10,19 @@ module.exports = {
 		rules: [
 			{
 				test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-				use: [
-					{
-						loader: 'url-loader',
-						options: {
-							limit: 100000
-						}
+				use: [{
+					loader: 'url-loader',
+					options: {
+						limit: 100000
 					}
-				]
+				}]
+			},
+			{
+				test: require.resolve('./index.js'),
+				use: [{
+					loader: 'expose-loader',
+					options: 'icsVideoJs'
+				}]
 			}
 		]
 	}

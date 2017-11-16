@@ -39,46 +39,68 @@ const ModalDialog = videojs.getComponent('ModalDialog');
 
 export const modal = new ModalDialog(player, {
   // We don't want this modal to go away when it closes.
-  temporary: false
+  temporary: false,
+  uncloseable: true
 });
 
-// Adding content to modal
-const el = document.createElement('div');
-el.id = 'gleb';
-el.innerHTML = `
-	<svg height="400" width="450">
-	<path id="lineAB" d="M 100 350 l 150 -300" stroke="red" stroke-width="3" fill="none" />
-	  <path id="lineBC" d="M 250 50 l 150 300" stroke="red" stroke-width="3" fill="none" />
-	  <path d="M 175 200 l 150 0" stroke="green" stroke-width="3" fill="none" />
-	  <path d="M 100 350 q 150 -300 300 0" stroke="blue" stroke-width="5" fill="none" />
-	  <!-- Mark relevant points -->
-	  <g stroke="black" stroke-width="3" fill="black">
-	    <circle id="pointA" cx="100" cy="350" r="3" />
-	    <circle id="pointB" cx="250" cy="50" r="3" />
-	    <circle id="pointC" cx="400" cy="350" r="3" />
-	  </g>
-	  <!-- Label the points -->
-	  <g font-size="30" font-family="sans-serif" fill="black" stroke="none" text-anchor="middle">
-	    <text x="100" y="350" dx="-30">A</text>
-	    <text x="250" y="50" dy="-10">B</text>
-	    <text x="400" y="350" dx="30">C</text>
-	  </g>
-	  Sorry, your browser does not support inline SVG.
-	</svg>
-`;
 
-modal.content(el);
-
-// Modal hook
-modal.on('beforemodalclose', function(ev, hash) {
-	console.log(arguments)
+modal.on('beforemodalopen', function(ev, hash) {
+	player.pause();
 })
 
 player.addChild(modal);
 
-player.on('pause', function() {
-  modal.open();
-});
+
+const markupFrames = [15, 40, 28];
+const markupContent = [
+	`<svg height="400" width="450">
+		<path id="lineAB" d="M 100 350 l 150 -300" stroke="red" stroke-width="3" fill="none" />
+		<path id="lineBC" d="M 250 50 l 150 300" stroke="red" stroke-width="3" fill="none" />
+		<path d="M 175 200 l 150 0" stroke="green" stroke-width="3" fill="none" />
+		<path d="M 100 350 q 150 -300 300 0" stroke="blue" stroke-width="5" fill="none" />
+		<!-- Mark relevant points -->
+		<g stroke="black" stroke-width="3" fill="black">
+			<circle id="pointA" cx="100" cy="350" r="3" />
+		    <circle id="pointB" cx="250" cy="50" r="3" />
+		    <circle id="pointC" cx="400" cy="350" r="3" />
+		</g>
+		<!-- Label the points -->
+		<g font-size="30" font-family="sans-serif" fill="black" stroke="none" text-anchor="middle">
+		    <text x="100" y="350" dx="-30">A</text>
+		    <text x="250" y="50" dy="-10">B</text>
+		    <text x="400" y="350" dx="30">C</text>
+		</g>
+		Sorry, your browser does not support inline SVG.
+	</svg>`,
+
+	`<svg width="100" height="100">
+		<circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+	</svg>`,
+
+	'<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">' +
+	   '<foreignObject width="100%" height="100%">' +
+	   '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:40px">' +
+	     '<em>I</em> like ' + 
+	     '<span style="color:white; text-shadow:0 0 2px blue;">' +
+	     'cheese</span>' +
+	   '</div>' +
+	   '</foreignObject>' +
+	'</svg>'	
+];
 
 
-console.log(player.currentTime(20));
+let currentFrameIndex;
+export function cycleThroughMarkups(){
+	if(currentFrameIndex === undefined || currentFrameIndex === markupFrames.length -1)
+		currentFrameIndex = 0;
+	else
+		currentFrameIndex++;
+
+	player.currentTime(markupFrames[currentFrameIndex]);
+
+	// Adding content to modal
+	const el = document.createElement('div');
+	el.innerHTML = markupContent[currentFrameIndex];
+	modal.fillWith(el);
+	modal.open();
+}

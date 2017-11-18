@@ -2,6 +2,9 @@
 
 const videojs = require('video.js');
 require('!style-loader!css-loader!video.js/dist/video-js.css')
+require('dashjs/dist/dash.all.debug.js');
+const videojsDash = require('videojs-contrib-dash/es5/videojs-dash.js');
+// const videojsContribDashS1 = require('videojs-contrib-dash-s1');
 
 const videoTagId = 'player';
 
@@ -11,8 +14,10 @@ const playerOptions = {
 	fluid: true,
 	preload: 'metadata',
 	sources: [{
-		src: '//vjs.zencdn.net/v/oceans.mp4',
-		type: 'video/mp4'
+		// src: '//vjs.zencdn.net/v/oceans.mp4',
+		// type: 'video/mp4'
+		src: 'https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd',
+		type: 'application/dash+xml'
 	}],
 	controlBar: {
 		fullscreenToggle: false

@@ -2,9 +2,15 @@ const path = require('path');
 
 module.exports = {
 	entry: './index.js',
+	devtool: 'inline-source-map',
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'dist')
+	},
+	devServer: {
+		contentBase: './dist',
+		watchContentBase: true,
+		host: '0.0.0.0'
 	},
 	module: {
 		rules: [

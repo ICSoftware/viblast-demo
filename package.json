@@ -4,14 +4,18 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --watch --content-base dist/"
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "video.js": "*",
+    "videojs-contrib-dash": "*",
+    "dashjs": "*"
   },
   "devDependencies": {
     "expose-loader": "^0.7.3",
     "file-loader": "^1.1.5",
     "script-loader": "^0.7.2",
     "url-loader": "^0.6.2",
-    "video.js": "*",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   }

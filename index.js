@@ -14,10 +14,10 @@ const playerOptions = {
 	fluid: true,
 	preload: 'metadata',
 	sources: [{
-		// src: '//vjs.zencdn.net/v/oceans.mp4',
-		// type: 'video/mp4'
-		src: 'https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd',
-		type: 'application/dash+xml'
+		src: '//vjs.zencdn.net/v/oceans.mp4',
+		type: 'video/mp4'
+		// src: 'https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd',
+		// type: 'application/dash+xml'
 	}],
 	controlBar: {
 		fullscreenToggle: false
@@ -85,12 +85,12 @@ const markupContent = [
 	'<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">' +
 	   '<foreignObject width="100%" height="100%">' +
 	   '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:40px">' +
-	     '<em>I</em> like ' + 
+	     '<em>I</em> like ' +
 	     '<span style="color:white; text-shadow:0 0 2px blue;">' +
 	     'cheese</span>' +
 	   '</div>' +
 	   '</foreignObject>' +
-	'</svg>'	
+	'</svg>'
 ];
 
 
@@ -108,4 +108,20 @@ export function cycleThroughMarkups(){
 	el.innerHTML = markupContent[currentFrameIndex];
 	modal.fillWith(el);
 	modal.open();
+}
+
+let playPromise;
+
+player.on('play', function(){
+	playPromise = Promise.resolve();
+});
+
+export function play(){
+	playPromise = player.play();
+}
+
+export function pause(){
+	playPromise.then(function() {
+		player.pause();
+	});
 }

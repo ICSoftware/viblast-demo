@@ -7,9 +7,8 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "dashjs": "*",
-    "video.js": "*",
-    "videojs-contrib-dash": "*"
+    "video.js": "^6.4.0",
+    "videojs-contrib-dash": "^2.9.2"
   },
   "devDependencies": {
     "css-loader": "^0.28.7",

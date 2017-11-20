@@ -532,8 +532,8 @@ code-point-at@^1.0.0:
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
 codem-isoboxer@^0.3.3:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/codem-isoboxer/-/codem-isoboxer-0.3.4.tgz#6ce6e820782d42194493efa94b73d7b276a0c55a"
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/codem-isoboxer/-/codem-isoboxer-0.3.5.tgz#71f1cd1267d0e1210331b2c0e7bf99ef05d7717c"
 
 color-convert@^1.3.0, color-convert@^1.9.0:
   version "1.9.1"
@@ -795,7 +795,7 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-dashjs@*, dashjs@^2.2.0:
+dashjs@^2.2.0:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/dashjs/-/dashjs-2.6.3.tgz#49cb6a16e312b49d91d7064b2480ffb0b2dbdd7f"
   dependencies:
@@ -3624,7 +3624,7 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-video.js@*:
+"video.js@^5.18.0 || ^6.2.8", video.js@^6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/video.js/-/video.js-6.4.0.tgz#4fbf14eee209c5cda290e553c8019266b7ba1572"
   dependencies:
@@ -3637,20 +3637,7 @@ video.js@*:
     videojs-vtt.js "0.12.4"
     xhr "2.4.0"
 
-"video.js@^5.18.0 || ^6.2.8":
-  version "6.2.8"
-  resolved "https://registry.yarnpkg.com/video.js/-/video.js-6.2.8.tgz#e449710bf8513f607456293ae1da97559a94fb97"
-  dependencies:
-    babel-runtime "^6.9.2"
-    global "4.3.2"
-    safe-json-parse "4.0.0"
-    tsml "1.0.1"
-    videojs-font "2.0.0"
-    videojs-ie8 "1.1.2"
-    videojs-vtt.js "0.12.4"
-    xhr "2.4.0"
-
-videojs-contrib-dash@*:
+videojs-contrib-dash@^2.9.2:
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/videojs-contrib-dash/-/videojs-contrib-dash-2.9.2.tgz#3273ec73d8937a879087f080cf5dc459f72e41ae"
   dependencies:

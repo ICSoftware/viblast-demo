@@ -12,10 +12,16 @@ const playerOptions = {
 	autoplay: true,
 	fluid: true,
 	preload: 'metadata',
+	playbackRates: [0.5, 1, 1.5, 2],
 	controlBar: {
-		fullscreenToggle: false
-	},
-	seekBar: {}
+		children: {
+			'playToggle': {},
+            'progressControl': {},
+			'remainingTimeDisplay': {},
+            'playbackRateMenuButton': {},
+			'fullscreenToggle': {},
+		}
+	}
 };
 
 // Player hook
@@ -26,7 +32,6 @@ videojs.hook('beforesetup', function(videoEl, options) {
 });
 
 export let player = videojs(videoTagId, playerOptions, function() { });
-// player.addClass('video-js');
 
 player.src({
 	// src: '//vjs.zencdn.net/v/oceans.mp4',
@@ -37,6 +42,14 @@ player.src({
 	// src: 'https://media.axprod.net/TestVectors/v7-MultiDRM-MultiKey/Manifest_1080p.mpd',
 	type: 'application/dash+xml'
 });
+
+const playbackRateEl = document.getElementById('playback-rate');
+function updatePlaybackRate(){
+	playbackRateEl.innerText = player.playbackRate();
+}
+setInterval(function(){
+	updatePlaybackRate();
+}, 200);
 
 // document.querySelector('#unload-player').addEventListener('click', function unloadVideojs() {
 // 	player.dispose();
@@ -59,7 +72,7 @@ modal.on('beforemodalopen', function(ev, hash) {
 player.addChild(modal);
 
 
-const markupFrames = [15, 40, 28];
+const markupFrames = [15, 40.75, 28];
 const markupContent = [
 	`<svg height="400" width="450">
 		<path id="lineAB" d="M 100 350 l 150 -300" stroke="red" stroke-width="3" fill="none" />

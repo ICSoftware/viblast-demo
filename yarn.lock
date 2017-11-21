@@ -27,6 +27,12 @@ acorn@^5.0.0:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.2.1.tgz#317ac7821826c22c702d66189ab8359675f135d7"
 
+aes-decrypter@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/aes-decrypter/-/aes-decrypter-1.0.3.tgz#9c06b8a5435a5ad09db933f8a014afcf184cc34e"
+  dependencies:
+    pkcs7 "^0.2.3"
+
 ajv-keywords@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-2.1.1.tgz#617997fc5f60576894c435f940d819e135b80762"
@@ -1393,6 +1399,13 @@ glob@^7.0.3, glob@^7.0.5:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
+global@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/global/-/global-4.3.0.tgz#ef7ec4beead579b454f5ebd5e7f303db54f42a2b"
+  dependencies:
+    min-document "^2.6.1"
+    process "~0.5.1"
+
 global@4.3.2, global@^4.3.0, global@^4.3.1, global@~4.3.0:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/global/-/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
@@ -1994,6 +2007,10 @@ lru-cache@^4.0.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
+m3u8-parser@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/m3u8-parser/-/m3u8-parser-2.1.0.tgz#c8170329ec1cd515d0d58bb8b762da9896cb0368"
+
 macaddress@^0.2.8:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/macaddress/-/macaddress-0.2.8.tgz#5904dc537c39ec6dbefeae902327135fa8511f12"
@@ -2100,7 +2117,7 @@ mimic-fn@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-1.1.0.tgz#e667783d92e89dbd342818b5230b9d62a672ad18"
 
-min-document@^2.19.0:
+min-document@^2.19.0, min-document@^2.6.1:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/min-document/-/min-document-2.19.0.tgz#7bd282e3f5842ed295bb748cdd9f1ffa2c824685"
   dependencies:
@@ -2148,6 +2165,10 @@ multicast-dns@^6.0.1:
   dependencies:
     dns-packet "^1.0.1"
     thunky "^0.1.0"
+
+mux.js@4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/mux.js/-/mux.js-4.3.2.tgz#576d537df037dc5ec35ec1316b948d815d35c210"
 
 nan@^2.3.0:
   version "2.7.0"
@@ -2480,6 +2501,10 @@ pinkie-promise@^2.0.0:
 pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
+
+pkcs7@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/pkcs7/-/pkcs7-0.2.3.tgz#22d60666d01065c5f24439098e4a4830452273be"
 
 pkg-dir@^2.0.0:
   version "2.0.0"
@@ -3572,6 +3597,10 @@ url-parse@^1.1.8:
     querystringify "~1.0.0"
     requires-port "~1.0.0"
 
+url-toolkit@1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/url-toolkit/-/url-toolkit-1.0.9.tgz#6647c84f931c54e1e61fa3b33e10ad34161ed4d9"
+
 url@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/url/-/url-0.11.0.tgz#3838e97cfc60521eb73c525a8e55bfdd9e2e28f1"
@@ -3624,7 +3653,21 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-"video.js@^5.18.0 || ^6.2.8", video.js@^6.4.0:
+video.js@^5.17.0:
+  version "5.20.4"
+  resolved "https://registry.yarnpkg.com/video.js/-/video.js-5.20.4.tgz#85d58129e568527ccc179f95f485f547ee3c2e06"
+  dependencies:
+    babel-runtime "^6.9.2"
+    global "4.3.0"
+    safe-json-parse "4.0.0"
+    tsml "1.0.1"
+    videojs-font "2.0.0"
+    videojs-ie8 "1.1.2"
+    videojs-swf "5.4.1"
+    videojs-vtt.js "0.12.4"
+    xhr "2.2.2"
+
+"video.js@^5.18.0 || ^6.2.8", "video.js@^5.19.1 || ^6.2.0", video.js@^6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/video.js/-/video.js-6.4.0.tgz#4fbf14eee209c5cda290e553c8019266b7ba1572"
   dependencies:
@@ -3645,6 +3688,28 @@ videojs-contrib-dash@^2.9.2:
     global "^4.3.0"
     video.js "^5.18.0 || ^6.2.8"
 
+videojs-contrib-hls@^5.12.2:
+  version "5.12.2"
+  resolved "https://registry.yarnpkg.com/videojs-contrib-hls/-/videojs-contrib-hls-5.12.2.tgz#6d567a9ceb7dd4049e6bd53dff17b96caa4c339c"
+  dependencies:
+    aes-decrypter "1.0.3"
+    global "^4.3.0"
+    m3u8-parser "2.1.0"
+    mux.js "4.3.2"
+    url-toolkit "1.0.9"
+    video.js "^5.19.1 || ^6.2.0"
+    videojs-contrib-media-sources "4.6.2"
+    webworkify "1.0.2"
+
+videojs-contrib-media-sources@4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/videojs-contrib-media-sources/-/videojs-contrib-media-sources-4.6.2.tgz#cfea40752cc80de868b70d0826809157493a19b6"
+  dependencies:
+    global "^4.3.0"
+    mux.js "4.3.2"
+    video.js "^5.17.0"
+    webworkify "1.0.2"
+
 videojs-font@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/videojs-font/-/videojs-font-2.0.0.tgz#af7461ef9d4b95e0334bffb78b2f2ff0364a9034"
@@ -3654,6 +3719,10 @@ videojs-ie8@1.1.2:
   resolved "https://registry.yarnpkg.com/videojs-ie8/-/videojs-ie8-1.1.2.tgz#a23d3d8608ad7192b69c6077fc4eb848998d35d9"
   dependencies:
     es5-shim "^4.5.1"
+
+videojs-swf@5.4.1:
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/videojs-swf/-/videojs-swf-5.4.1.tgz#2077ef71c749f2c7823ef49babae4dd2acb08f87"
 
 videojs-vtt.js@0.12.4:
   version "0.12.4"
@@ -3768,6 +3837,14 @@ websocket-extensions@>=0.1.1:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
 
+webworkify-webpack-dropin@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/webworkify-webpack-dropin/-/webworkify-webpack-dropin-1.1.9.tgz#1d19b9817616319ee238a4537c6610f3df54f3ff"
+
+webworkify@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/webworkify/-/webworkify-1.0.2.tgz#b616a95a6225249bf25a91e96e0942c665155995"
+
 whet.extend@~0.9.9:
   version "0.9.9"
   resolved "https://registry.yarnpkg.com/whet.extend/-/whet.extend-0.9.9.tgz#f877d5bf648c97e5aa542fadc16d6a259b9c11a1"
@@ -3810,6 +3887,15 @@ wrap-ansi@^2.0.0:
 wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
+
+xhr@2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/xhr/-/xhr-2.2.2.tgz#2ee72571869f8686d41559a9ea286c18971435ff"
+  dependencies:
+    global "~4.3.0"
+    is-function "^1.0.1"
+    parse-headers "^2.0.0"
+    xtend "^4.0.0"
 
 xhr@2.4.0:
   version "2.4.0"

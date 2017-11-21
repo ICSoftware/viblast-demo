@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "video.js": "^6.4.0",
-    "videojs-contrib-dash": "^2.9.2"
+    "videojs-contrib-dash": "^2.9.2",
+    "videojs-contrib-hls": "^5.12.2",
+    "webworkify-webpack-dropin": "^1.1.9"
   },
   "devDependencies": {
     "css-loader": "^0.28.7",

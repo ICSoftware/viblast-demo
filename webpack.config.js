@@ -31,5 +31,11 @@ module.exports = {
 				}]
 			}
 		]
+	},
+	resolve: {
+		alias: {
+			// Required for videojs-contrib-hls to work with webpack
+		    webworkify: 'webworkify-webpack-dropin'
+		}
 	}
 };

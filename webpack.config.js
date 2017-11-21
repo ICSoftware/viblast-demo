@@ -1,12 +1,14 @@
 const path = require('path');
 
 module.exports = {
-	entry: './index.js',
-	devtool: 'inline-source-map',
+	entry: {
+		demo: './index.js'
+	},
 	output: {
-		filename: 'bundle.js',
+		filename: '[name].bundle.js',
 		path: path.resolve(__dirname, 'dist')
 	},
+	devtool: 'inline-source-map',
 	devServer: {
 		contentBase: './dist',
 		watchContentBase: true,

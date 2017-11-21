@@ -31,10 +31,11 @@ export let player = videojs(videoTagId, playerOptions, function() { });
 player.src({
 	// src: '//vjs.zencdn.net/v/oceans.mp4',
 	// type: 'video/mp4'
-	src: 'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8',
-	type: 'application/x-mpegURL'
-	// src: 'https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd',
-	// type: 'application/dash+xml'
+	// src: 'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8',
+	// type: 'application/x-mpegURL'
+	src: 'https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd',
+	// src: 'https://media.axprod.net/TestVectors/v7-MultiDRM-MultiKey/Manifest_1080p.mpd',
+	type: 'application/dash+xml'
 });
 
 // document.querySelector('#unload-player').addEventListener('click', function unloadVideojs() {
@@ -111,6 +112,8 @@ export function cycleThroughMarkups(){
 	modal.fillWith(el);
 	modal.open();
 }
+
+// https://developers.google.com/web/updates/2017/06/play-request-was-interrupted
 
 let playPromise;
 

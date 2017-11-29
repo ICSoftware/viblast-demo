@@ -5,12 +5,15 @@
 	<body>
 		<video id="player"></video>
 		<br />
-		<button id="play-video" onclick="icsVideoJs.play()">Play Video</button>
-		<button id="pause-video" onclick="icsVideoJs.pause()">Pause Video</button>
+		<button id="toggle-play-video"></button>
 		<button id="next-markup" onclick="icsVideoJs.cycleThroughMarkups()">Next Markup</button>
 		<button id="close-markup" onclick="icsVideoJs.modal.close()">Close Markup</button>
 		<br />
-		<span id="playback-rate"></span>
+		<br />
+		<span id="current-frame"></span>
+		<br />
+		<button id="previous-frame" onclick="icsVideoJs.previousFrame()">&lt;&lt;</button>
+		<button id="next-frame" onclick="icsVideoJs.nextFrame()">&gt;&gt;</button>
 
 		<script src="demo.bundle.js"></script>
 	</body>

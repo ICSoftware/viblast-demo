@@ -32,17 +32,24 @@ videojs.hook('beforesetup', function(videoEl, options) {
 });
 
 export const frameRate = 29.97;
+export const spf = formatToPrecision(1 / frameRate);
 export let totalTime;
 
-window.requestAnimationFrame(displayFrameNumberAndCurrentTime);
+let requestAnimationFrameId;
 function displayFrameNumberAndCurrentTime(){
-  document.getElementById('current-frame').innerHTML = 'Time:' + player.currentTime() + ' | Frame:' + (player.currentTime() * frameRate);
-  window.requestAnimationFrame(displayFrameNumberAndCurrentTime);
+  document.getElementById('current-frame').innerHTML = `
+    Time: ${player.currentTime()}
+    <br/> Time Code @ fps:${frameRate} & spf:${spf}: ${secondsToHMSF(player.currentTime())}
+    <br/> Frames: ${Math.floor(player.currentTime() * frameRate)}
+  `;
+  requestAnimationFrameId = window.requestAnimationFrame(displayFrameNumberAndCurrentTime);
 }
 
 export let player = videojs(videoTagId, playerOptions, function() {
   this.one('loadedmetadata', function() {
     totalTime = this.duration();
+    displayFrameNumberAndCurrentTime();
+    window.cancelAnimationFrame(requestAnimationFrameId);
   });
 });
 
@@ -137,13 +144,26 @@ export function cycleThroughMarkups(){
 let playPromise;
 let playing = false;
 
+// let theInterval;
 player.on('play', function(){
   playPromise = Promise.resolve();
   playing = true;
+  // theInterval = setInterval(function() {
+      displayFrameNumberAndCurrentTime();
+  // }, (1000 / frameRate));
+  requestAnimationFrameId = window.requestAnimationFrame(displayFrameNumberAndCurrentTime);
 });
 
 player.on('pause', function(){
   playing = false;
+  // seekToFrameStart();
+  // clearInterval(theInterval)
+  window.cancelAnimationFrame(requestAnimationFrameId);
+});
+
+player.on('seeked', function(){
+  displayFrameNumberAndCurrentTime();
+  window.cancelAnimationFrame(requestAnimationFrameId);
 });
 
 const togglePlayButton = document.getElementById('toggle-play-video');
@@ -169,7 +189,7 @@ function pause(){
 }
 
 export function previousFrame(){
-  let newTime = player.currentTime() - (1 / frameRate);
+  let newTime = player.currentTime() - spf;
   if(newTime < 0) {
     newTime = 0;
   }
@@ -177,9 +197,29 @@ export function previousFrame(){
 }
 
 export function nextFrame(){
-  let newTime = player.currentTime() + (1 / frameRate);
+  let newTime = player.currentTime() + spf;
   if(newTime > totalTime) {
     newTime = totalTime;
   }
   player.currentTime(newTime);
+}
+
+function secondsToHMSF(doubleSeconds) {
+  const wholeSeconds = Math.floor(doubleSeconds);
+  const hours = Math.floor(wholeSeconds / 3600);
+  const wholeSecondsMinusHours = wholeSeconds - (hours * 3600);
+  const minutes = Math.floor(wholeSecondsMinusHours / 60);
+  const seconds = wholeSecondsMinusHours - (minutes * 60);
+  const frame = Math.floor((doubleSeconds % 1) * frameRate);
+  return `${hours}:${minutes}:${seconds}:${frame}`;
+}
+
+function formatToPrecision(double) {
+  return Number.parseFloat(double.toPrecision(6));
+}
+
+function seekToFrameStart() {
+  setTimeout(function(){
+    player.currentTime(Math.floor(player.currentTime() * frameRate) / frameRate);
+  }, 10);
 }

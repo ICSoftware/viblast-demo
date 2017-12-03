@@ -31,6 +31,10 @@ module.exports = {
 					loader: 'expose-loader',
 					options: 'icsVideoJs'
 				}]
+			},
+			{
+				test: /\.css$/,
+				use: ['style-loader', 'css-loader']
 			}
 		]
 	},

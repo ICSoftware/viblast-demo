@@ -4,6 +4,7 @@ require('!style-loader!css-loader!video.js/dist/video-js.css')
 export const videojs = require('video.js');
 require('videojs-contrib-dash/es5/videojs-dash.js');
 require('videojs-contrib-hls/es5/videojs-contrib-hls.js');
+require('./style.css');
 
 const videoTagId = 'player';
 
@@ -32,24 +33,30 @@ videojs.hook('beforesetup', function(videoEl, options) {
 });
 
 export const frameRate = 29.97;
-export const spf = formatToPrecision(1 / frameRate);
+export const spf = 1 / frameRate;
 export let totalTime;
 
-let requestAnimationFrameId;
+
+const currentTimeEl = document.getElementById('current-time');
+
 function displayFrameNumberAndCurrentTime(){
-  document.getElementById('current-frame').innerHTML = `
-    Time: ${player.currentTime()}
-    <br/> Time Code @ fps:${frameRate} & spf:${spf}: ${secondsToHMSF(player.currentTime())}
-    <br/> Frames: ${Math.floor(player.currentTime() * frameRate)}
-  `;
-  requestAnimationFrameId = window.requestAnimationFrame(displayFrameNumberAndCurrentTime);
+	currentTimeEl.value = player.currentTime();
+  document.getElementById('time-code').innerHTML = secondsToHMSF(player.currentTime());
+  document.getElementById('frames').innerHTML = Math.floor(player.currentTime() * frameRate);
+
+  return window.requestAnimationFrame(displayFrameNumberAndCurrentTime);
 }
 
+currentTimeEl.addEventListener('change', function(event){
+	player.currentTime(event.target.value);
+});
+
 export let player = videojs(videoTagId, playerOptions, function() {
-  this.one('loadedmetadata', function() {
+	this.one('loadedmetadata', function() {
     totalTime = this.duration();
-    displayFrameNumberAndCurrentTime();
-    window.cancelAnimationFrame(requestAnimationFrameId);
+		document.getElementById('frame-rate').innerHTML = frameRate;
+		document.getElementById('spf').innerHTML = formatToPrecision(spf);
+    window.cancelAnimationFrame(displayFrameNumberAndCurrentTime());
   });
 });
 
@@ -143,15 +150,16 @@ export function cycleThroughMarkups(){
 
 let playPromise;
 let playing = false;
+let requestAnimationFrameId;
 
 // let theInterval;
 player.on('play', function(){
   playPromise = Promise.resolve();
   playing = true;
   // theInterval = setInterval(function() {
-      displayFrameNumberAndCurrentTime();
+      // displayFrameNumberAndCurrentTime();
   // }, (1000 / frameRate));
-  requestAnimationFrameId = window.requestAnimationFrame(displayFrameNumberAndCurrentTime);
+  requestAnimationFrameId = displayFrameNumberAndCurrentTime();
 });
 
 player.on('pause', function(){
@@ -161,8 +169,11 @@ player.on('pause', function(){
   window.cancelAnimationFrame(requestAnimationFrameId);
 });
 
+player.on('seeking', function(){
+  requestAnimationFrameId = displayFrameNumberAndCurrentTime();
+});
+
 player.on('seeked', function(){
-  displayFrameNumberAndCurrentTime();
   window.cancelAnimationFrame(requestAnimationFrameId);
 });
 
@@ -189,7 +200,7 @@ function pause(){
 }
 
 export function previousFrame(){
-  let newTime = player.currentTime() - spf;
+  let newTime = formatToPrecision(player.currentTime() - spf);
   if(newTime < 0) {
     newTime = 0;
   }
@@ -197,9 +208,25 @@ export function previousFrame(){
 }
 
 export function nextFrame(){
-  let newTime = player.currentTime() + spf;
+  let newTime = formatToPrecision(player.currentTime() + spf);
   if(newTime > totalTime) {
     newTime = totalTime;
+  }
+  player.currentTime(newTime);
+}
+
+export function previousMillisecond(){
+  let newTime = player.currentTime() - .000001;
+  if(newTime < 0) {
+    newTime = 0;
+  }
+  player.currentTime(newTime);
+}
+
+export function nextMillisecond(){
+  let newTime = player.currentTime() + .000001;
+  if(newTime < 0) {
+    newTime = 0;
   }
   player.currentTime(newTime);
 }
@@ -215,7 +242,7 @@ function secondsToHMSF(doubleSeconds) {
 }
 
 function formatToPrecision(double) {
-  return Number.parseFloat(double.toPrecision(6));
+  return Number.parseFloat(double.toFixed(6));
 }
 
 function seekToFrameStart() {

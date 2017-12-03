@@ -10,12 +10,21 @@
 		<button id="close-markup" onclick="icsVideoJs.modal.close()">Close Markup</button>
 		<br />
 		<br />
-		<span id="current-frame"></span>
+		<div class="output">
+			Current Time: <input id="current-time">
+	    <br/>
+			Time Code (Frame Rate: <span id="frame-rate"></span>, Seconds Per Frame: <span id="spf"></span>): <span id="time-code"></span>
+	    <br/>
+			Frames: <span id="frames"></span>
+		</div>
 		<br />
-		<button id="previous-frame" onclick="icsVideoJs.previousFrame()">&lt;&lt; Frame</button>
-		<button id="next-frame" onclick="icsVideoJs.nextFrame()">Frame &gt;&gt;</button>
-		<!-- <br />
-		<label>Millisecond Seek</label><input id="manual-seek"> -->
+		<label>Frame Seek</label>
+		<button id="previous-frame" onclick="icsVideoJs.previousFrame()">&lt;&lt;</button>
+		<button id="next-frame" onclick="icsVideoJs.nextFrame()">&gt;&gt;</button>
+		<br />
+		<label>Millisecond Seek</label>
+		<button id="previous-millisecond" onclick="icsVideoJs.previousMillisecond()">&lt;&lt;</button>
+		<button id="next-millisecond" onclick="icsVideoJs.nextMillisecond()">&gt;&gt;</button>
 
 		<script src="demo.bundle.js"></script>
 	</body>

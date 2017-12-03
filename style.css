@@ -1,0 +1,6 @@
+body > button,
+label,
+input,
+.output {
+  font-size: 16pt;
+}

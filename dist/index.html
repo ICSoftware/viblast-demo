@@ -5,26 +5,32 @@
 	<body>
 		<video id="player"></video>
 		<br />
-		<button id="toggle-play-video"></button>
-		<button id="next-markup" onclick="icsVideoJs.cycleThroughMarkups()">Next Markup</button>
-		<button id="close-markup" onclick="icsVideoJs.modal.close()">Close Markup</button>
-		<br />
-		<br />
-		<div class="output">
+		<div id="controls">
+			<div>
+				<button id="toggle-play-video"></button>
+				<button id="next-markup" onclick="icsVideoJs.cycleThroughMarkups()">Next Markup</button>
+				<button id="close-markup" onclick="icsVideoJs.modal.close()">Close Markup</button>
+			</div>
+			<br/>
+			<div>
+				<label>Frame Seek</label>
+				<button id="previous-frame" onclick="icsVideoJs.previousFrame()">&lt;&lt;</button>
+				<button id="next-frame" onclick="icsVideoJs.nextFrame()">&gt;&gt;</button>
+			</div>
+			<br/>
+			<div>
+				<label>Millisecond Seek</label>
+				<button id="previous-millisecond" onclick="icsVideoJs.previousMillisecond()">&lt;&lt;</button>
+				<button id="next-millisecond" onclick="icsVideoJs.nextMillisecond()">&gt;&gt;</button>
+			</div>
+		</div>
+		<div id="stats">
 			Current Time: <input id="current-time">
 	    <br/>
 			Time Code (Frame Rate: <span id="frame-rate"></span>, Seconds Per Frame: <span id="spf"></span>): <span id="time-code"></span>
 	    <br/>
 			Frames: <span id="frames"></span>
 		</div>
-		<br />
-		<label>Frame Seek</label>
-		<button id="previous-frame" onclick="icsVideoJs.previousFrame()">&lt;&lt;</button>
-		<button id="next-frame" onclick="icsVideoJs.nextFrame()">&gt;&gt;</button>
-		<br />
-		<label>Millisecond Seek</label>
-		<button id="previous-millisecond" onclick="icsVideoJs.previousMillisecond()">&lt;&lt;</button>
-		<button id="next-millisecond" onclick="icsVideoJs.nextMillisecond()">&gt;&gt;</button>
 
 		<script src="demo.bundle.js"></script>
 	</body>

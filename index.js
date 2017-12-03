@@ -4,7 +4,7 @@ require('!style-loader!css-loader!video.js/dist/video-js.css')
 export const videojs = require('video.js');
 require('videojs-contrib-dash/es5/videojs-dash.js');
 require('videojs-contrib-hls/es5/videojs-contrib-hls.js');
-require('./style.css');
+require('./style.scss');
 
 const videoTagId = 'player';
 
@@ -68,6 +68,7 @@ player.src({
   type: 'application/x-mpegURL'
   // src: 'https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd',
   // src: 'https://media.axprod.net/TestVectors/v7-MultiDRM-MultiKey/Manifest_1080p.mpd',
+  // src: 'http://rdmedia.bbc.co.uk/dash/ondemand/testcard/1/client_manifest-events.mpd',
   // type: 'application/dash+xml'
 });
 

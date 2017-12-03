@@ -1,0 +1,18 @@
+$sectionMargin: 10px;
+
+#controls,
+#stats {
+  float: left;
+  margin-bottom: $sectionMargin;
+  *,
+  button {
+    font-size: 20pt;
+  }
+}
+
+#controls {
+  margin-right: 10vw;
+  button + button {
+    margin-left: $sectionMargin;
+  }
+}

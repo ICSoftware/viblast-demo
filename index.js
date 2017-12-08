@@ -1,4 +1,6 @@
 // window.VIDEOJS_NO_DYNAMIC_STYLE = true;
+// ffprobe -v error -sexagesimal -select_streams V:0 -show_entries stream '/Users/gradutsky/Documents/transcodes/SMPTE_100-BTC.mov'
+// ffmpeg -hide_banner -y -loglevel verbose -i ~/Documents/transcodes/SMPTE_100-BTC.mov -c:v hevc -b:v 128k -r 23.976023976023978 -bufsize 24215311 -flags +cgop -g 30 -hls_time 3 -hls_list_size 0 ~/Applications/video.js-demo/dist/media/SMPTE_100-BTC.m3u8
 
 require('!style-loader!css-loader!video.js/dist/video-js.css')
 export const videojs = require('video.js');
@@ -32,7 +34,7 @@ videojs.hook('beforesetup', function(videoEl, options) {
   return options;
 });
 
-export const frameRate = 29.97;
+export const frameRate = 24000/1001;
 export const spf = 1 / frameRate;
 export let totalTime;
 
@@ -62,10 +64,12 @@ export let player = videojs(videoTagId, playerOptions, function() {
 
 player.src({
   // src: '//vjs.zencdn.net/v/oceans.mp4',
-  // src: 'A_day_at_the_races_fixed_short.mp4',
+  // src: 'media/A_day_at_the_races_fixed_short.mp4',
+  src: 'media/SMPTE_100-BTC.m3u8',
   // type: 'video/mp4'
-  src: 'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8',
+  // src: 'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8',
   type: 'application/x-mpegURL'
+  // type: 'application/vnd.apple.mpegurl'
   // src: 'https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd',
   // src: 'https://media.axprod.net/TestVectors/v7-MultiDRM-MultiKey/Manifest_1080p.mpd',
   // src: 'http://rdmedia.bbc.co.uk/dash/ondemand/testcard/1/client_manifest-events.mpd',
@@ -201,7 +205,7 @@ function pause(){
 }
 
 export function previousFrame(){
-  let newTime = formatToPrecision(player.currentTime() - spf);
+  let newTime = getPreviousAndNextFrames().previous;
   if(newTime < 0) {
     newTime = 0;
   }
@@ -209,7 +213,7 @@ export function previousFrame(){
 }
 
 export function nextFrame(){
-  let newTime = formatToPrecision(player.currentTime() + spf);
+  let newTime = getPreviousAndNextFrames().next;
   if(newTime > totalTime) {
     newTime = totalTime;
   }
@@ -246,8 +250,18 @@ function formatToPrecision(double) {
   return Number.parseFloat(double.toFixed(6));
 }
 
-function seekToFrameStart() {
-  setTimeout(function(){
-    player.currentTime(Math.floor(player.currentTime() * frameRate) / frameRate);
-  }, 10);
+function getCurrentFrameCount(){
+  return Math.floor(player.currentTime() / spf);
+}
+
+function getCurrentFrameTime(){
+  return getCurrentFrameCount() * spf;
+}
+
+function getPreviousAndNextFrames() {
+  const currentFrameTime = getCurrentFrameTime();
+  return {
+    previous: currentFrameTime - spf,
+    next: currentFrameTime + spf
+  }
 }

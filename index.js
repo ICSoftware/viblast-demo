@@ -34,19 +34,20 @@ videojs.hook('beforesetup', function(videoEl, options) {
   return options;
 });
 
-export const frameRate = 24000/1001;
-export const spf = 1 / frameRate;
+const precision = 6;
+export const frameRate = formatToPrecision(24000/1001);
+export const spf = formatToPrecision(1 / frameRate);
 export let totalTime;
 
 
 const currentTimeEl = document.getElementById('current-time');
 
 function displayFrameNumberAndCurrentTime(){
-	currentTimeEl.value = player.currentTime();
-  document.getElementById('time-code').innerHTML = secondsToHMSF(player.currentTime());
-  document.getElementById('frames').innerHTML = Math.floor(player.currentTime() * frameRate);
+	currentTimeEl.value = player.currentTime().toString();
+  document.getElementById('time-code').innerHTML = secondsToTimecode(player.currentTime());
+  document.getElementById('frames').innerHTML = Math.floor(formatToPrecision(player.currentTime() * frameRate));
 
-  return window.requestAnimationFrame(displayFrameNumberAndCurrentTime);
+  // return window.requestAnimationFrame(displayFrameNumberAndCurrentTime);
 }
 
 currentTimeEl.addEventListener('change', function(event){
@@ -57,8 +58,8 @@ export let player = videojs(videoTagId, playerOptions, function() {
 	this.one('loadedmetadata', function() {
     totalTime = this.duration();
 		document.getElementById('frame-rate').innerHTML = frameRate;
-		document.getElementById('spf').innerHTML = formatToPrecision(spf);
-    window.cancelAnimationFrame(displayFrameNumberAndCurrentTime());
+		document.getElementById('spf').innerHTML = spf;
+    displayFrameNumberAndCurrentTime();
   });
 });
 
@@ -157,29 +158,40 @@ let playPromise;
 let playing = false;
 let requestAnimationFrameId;
 
-// let theInterval;
+let theInterval;
 player.on('play', function(){
   playPromise = Promise.resolve();
   playing = true;
-  // theInterval = setInterval(function() {
-      // displayFrameNumberAndCurrentTime();
-  // }, (1000 / frameRate));
-  requestAnimationFrameId = displayFrameNumberAndCurrentTime();
+  runStatsTracker();
+  // requestAnimationFrameId = displayFrameNumberAndCurrentTime();
 });
+
+function runStatsTracker(){
+  theInterval = setInterval(function() {
+      displayFrameNumberAndCurrentTime();
+  }, (1000 / frameRate));
+}
+
+function stopStatsTracker(){
+  clearInterval(theInterval);
+}
 
 player.on('pause', function(){
   playing = false;
   // seekToFrameStart();
-  // clearInterval(theInterval)
-  window.cancelAnimationFrame(requestAnimationFrameId);
+  stopStatsTracker();
+  // window.cancelAnimationFrame(requestAnimationFrameId);
 });
 
 player.on('seeking', function(){
-  requestAnimationFrameId = displayFrameNumberAndCurrentTime();
+  runStatsTracker();
+  // requestAnimationFrameId = displayFrameNumberAndCurrentTime();
+  // window.cancelAnimationFrame(displayFrameNumberAndCurrentTime());
 });
 
 player.on('seeked', function(){
-  window.cancelAnimationFrame(requestAnimationFrameId);
+  stopStatsTracker();
+  // window.cancelAnimationFrame(requestAnimationFrameId);
 });
 
 const togglePlayButton = document.getElementById('toggle-play-video');
@@ -220,23 +232,23 @@ export function nextFrame(){
   player.currentTime(newTime);
 }
 
-export function previousMillisecond(){
-  let newTime = player.currentTime() - .000001;
+export function previousTime(time){
+  let newTime = player.currentTime() - time;
   if(newTime < 0) {
     newTime = 0;
   }
   player.currentTime(newTime);
 }
 
-export function nextMillisecond(){
-  let newTime = player.currentTime() + .000001;
+export function nextTime(time){
+  let newTime = player.currentTime() + time;
   if(newTime < 0) {
     newTime = 0;
   }
   player.currentTime(newTime);
 }
 
-function secondsToHMSF(doubleSeconds) {
+function secondsToTimecode(doubleSeconds) {
   const wholeSeconds = Math.floor(doubleSeconds);
   const hours = Math.floor(wholeSeconds / 3600);
   const wholeSecondsMinusHours = wholeSeconds - (hours * 3600);
@@ -247,21 +259,24 @@ function secondsToHMSF(doubleSeconds) {
 }
 
 function formatToPrecision(double) {
-  return Number.parseFloat(double.toFixed(6));
+  return Number.parseFloat(double.toFixed(precision));
 }
 
 function getCurrentFrameCount(){
-  return Math.floor(player.currentTime() / spf);
+  return Math.floor(player.currentTime() * formatToPrecision(frameRate));
 }
 
 function getCurrentFrameTime(){
-  return getCurrentFrameCount() * spf;
+  return formatToPrecision(getCurrentFrameCount() / formatToPrecision(frameRate));
 }
 
 function getPreviousAndNextFrames() {
   const currentFrameTime = getCurrentFrameTime();
+  let num = 1;
+  for(var i = 0; i < precision; ++i){ num = num/10; }
+  num = formatToPrecision(num);
   return {
-    previous: currentFrameTime - spf,
-    next: currentFrameTime + spf
+    previous: currentFrameTime - spf - num,
+    next: currentFrameTime + spf + num
   }
 }

@@ -20,14 +20,23 @@
 			<br/>
 			<div>
 				<label>Millisecond Seek</label>
-				<button id="previous-millisecond" onclick="icsVideoJs.previousMillisecond()">&lt;&lt;</button>
-				<button id="next-millisecond" onclick="icsVideoJs.nextMillisecond()">&gt;&gt;</button>
+				<button id="previous-millisecond" onclick="icsVideoJs.previousTime(.001)">&lt;&lt;</button>
+				<button id="next-millisecond" onclick="icsVideoJs.nextTime(.001)">&gt;&gt;</button>
+			</div>
+			<div>
+				<label>Microsecond Seek</label>
+				<button id="previous-millisecond" onclick="icsVideoJs.previousTime(.000001)">&lt;&lt;</button>
+				<button id="next-millisecond" onclick="icsVideoJs.nextTime(.000001)">&gt;&gt;</button>
 			</div>
 		</div>
 		<div id="stats">
-			Current Time: <input id="current-time">
+			Current Time: <input type="text" id="current-time">
 	    <br/>
-			Time Code (Frame Rate: <span id="frame-rate"></span>, Seconds Per Frame: <span id="spf"></span>): <span id="time-code"></span>
+			Time Code: <span id="time-code"></span>
+	    <br/>
+			Frame Rate: <span id="frame-rate"></span>
+	    <br/>
+			Seconds Per Frame: <span id="spf"></span>
 	    <br/>
 			Frames: <span id="frames"></span>
 		</div>

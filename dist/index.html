@@ -14,19 +14,26 @@
 			<br/>
 			<div>
 				<label>Frame Seek</label>
-				<button id="previous-frame" onclick="icsVideoJs.previousFrame()">&lt;&lt;</button>
-				<button id="next-frame" onclick="icsVideoJs.nextFrame()">&gt;&gt;</button>
+				<button id="previous-frame" onclick="icsVideoJs.incrementFrame('previous')">&lt;&lt;</button>
+				<button id="next-frame" onclick="icsVideoJs.incrementFrame('next')">&gt;&gt;</button>
+			</div>
+			<br/>
+			<div>
+				<label>Second Seek</label>
+				<button id="previous-second" onclick="icsVideoJs.incrementTime(-1)">&lt;&lt;</button>
+				<button id="next-second" onclick="icsVideoJs.incrementTime(1)">&gt;&gt;</button>
 			</div>
 			<br/>
 			<div>
 				<label>Millisecond Seek</label>
-				<button id="previous-millisecond" onclick="icsVideoJs.previousTime(.001)">&lt;&lt;</button>
-				<button id="next-millisecond" onclick="icsVideoJs.nextTime(.001)">&gt;&gt;</button>
+				<button id="previous-millisecond" onclick="icsVideoJs.incrementTime(-.001)">&lt;&lt;</button>
+				<button id="next-millisecond" onclick="icsVideoJs.incrementTime(.001)">&gt;&gt;</button>
 			</div>
+			<br/>
 			<div>
 				<label>Microsecond Seek</label>
-				<button id="previous-millisecond" onclick="icsVideoJs.previousTime(.000001)">&lt;&lt;</button>
-				<button id="next-millisecond" onclick="icsVideoJs.nextTime(.000001)">&gt;&gt;</button>
+				<button id="previous-microsecond" onclick="icsVideoJs.incrementTime(-.000001)">&lt;&lt;</button>
+				<button id="next-microsecond" onclick="icsVideoJs.incrementTime(.000001)">&gt;&gt;</button>
 			</div>
 		</div>
 		<div id="stats">

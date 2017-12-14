@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>Getting Started</title>
+	</head>
+	<body>
+		<video id="player"
+      controls
+      height="1080"
+      width="1920"
+      preload="metadata">
+      <source src="media/SMPTE_100-BTC.m3u8" type="application/x-mpegURL">
+    </video>
+		<br />
+		<div id="controls">
+			<div>
+				<button id="toggle-play-video"></button>
+				<button id="next-markup" onclick="icsVideoJs.cycleThroughMarkups()">Next Markup</button>
+				<button id="close-markup" onclick="icsVideoJs.modal.close()">Close Markup</button>
+			</div>
+			<br/>
+			<div>
+				<label>Frame Seek</label>
+				<button id="previous-frame" onclick="icsVideoJs.incrementFrame('previous')">&lt;&lt;</button>
+				<button id="next-frame" onclick="icsVideoJs.incrementFrame('next')">&gt;&gt;</button>
+			</div>
+			<br/>
+			<div>
+				<label>Second Seek</label>
+				<button id="previous-second" onclick="icsVideoJs.incrementTime(-1)">&lt;&lt;</button>
+				<button id="next-second" onclick="icsVideoJs.incrementTime(1)">&gt;&gt;</button>
+			</div>
+			<br/>
+			<div>
+				<label>Millisecond Seek</label>
+				<button id="previous-millisecond" onclick="icsVideoJs.incrementTime(-.001)">&lt;&lt;</button>
+				<button id="next-millisecond" onclick="icsVideoJs.incrementTime(.001)">&gt;&gt;</button>
+			</div>
+			<br/>
+			<div>
+				<label>Microsecond Seek</label>
+				<button id="previous-microsecond" onclick="icsVideoJs.incrementTime(-.000001)">&lt;&lt;</button>
+				<button id="next-microsecond" onclick="icsVideoJs.incrementTime(.000001)">&gt;&gt;</button>
+			</div>
+		</div>
+		<div id="stats">
+			Current Time: <input type="text" id="current-time">
+	    <br/>
+			Time Code: <span id="time-code"></span>
+	    <br/>
+			Frame Rate: <span id="frame-rate"></span>
+	    <br/>
+			Seconds Per Frame: <span id="spf"></span>
+	    <br/>
+			Frames: <span id="frames"></span>
+		</div>
+
+		<script src="demo.bundle.js"></script>
+	</body>
+</html>

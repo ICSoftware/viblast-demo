@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
 	entry: {
-		demo: './index.js'
+		demo: './index-video-frame.js'
 	},
 	output: {
 		filename: '[name].bundle.js',
@@ -22,14 +22,18 @@ module.exports = {
 					loader: 'url-loader',
 					options: {
 						limit: 100000
-					}	
+					}
 				}]
 			},
 			{
-				test: require.resolve('./index.js'),
+				test: require.resolve('./VideoFrame.js'),
+				use: ['script-loader']
+			},
+			{
+				test: require.resolve('./index-video-frame.js'),
 				use: [{
 					loader: 'expose-loader',
-					options: 'icsVideoJs'
+					options: 'icsVideoFrame'
 				}]
 			},
 			{

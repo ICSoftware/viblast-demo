@@ -16,3 +16,14 @@ $sectionMargin: 10px;
     margin-left: $sectionMargin;
   }
 }
+
+/* videojs */
+.vjs-current-time,
+.vjs-time-control {
+  display: block !important;
+}
+
+.player-dimensions {
+  width: 600px;
+  height: 350px;
+}

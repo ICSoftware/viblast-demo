@@ -1,0 +1,86 @@
+almanac coffee barbary coast - 20 lt : 171.99
+almanac emperor norton - 20 lt : 171.99
+bear pace car racer - 20 lt : 164.99
+bear racer 5 ipa - 20 lt : 164.99
+braven black pale - 20 lt : 114.99
+braven bushwick pilsner - 20 lt : 107.99
+braven skyliner ipa - 20 lt : 121.99
+braven white ipa - 20 lt : 114.99
+cigar apple pie cider - 20 lt : 147.99
+cigar florida cracker - 20 lt : 107.99
+cigar guayabera - 20 lt : 130.99
+cigar invasion - 20 lt : 107.99
+cigar jai alai ipa - 20 lt : 121.99
+destihl abbey's single - 20 lt : 119.99
+destihl apricot synchopathic - 20 lt : 143.99
+destihl here gose nothin' - 20 lt : 143.99
+destihl hoperation double ipa - 20 lt : 156.99
+destihl vertex ipa - 20 lt : 119.99
+destihl weissenheimer hefe - 20 lt : 103.99
+duclaw blood orange gypsy - 20 lt : 134.99
+duclaw devil made me do it - 20 lt : 151.99
+duclaw dirty little freak - 20 lt : 119.99
+duclaw funk - 20 lt : 120.99
+duclaw sweet baby jesus - 20 lt : 119.99
+five boroughs festbier - 20 lt : 121.99
+five boroughs gose - 20 lt : 114.99
+five boroughs hoppy lager - 20 lt : 121.99
+five boroughs ipa - 20 lt : 121.99
+five boroughs pilsner - 20 lt : 114.99
+flying monkey* smashbomb ipa - 20 lt : 169.99
+harlem blue 1658 ale - 20 lt : 113.99
+harlem blue hectic ipa - 20 lt : 130.99
+harpoon house golden - 20 lt : 90.99
+harpoon i.p.a - 20 lt : 90.99
+harpoon winter - 20 lt : 90.99
+kuhnhenn white devil - 20 lt : 150.99
+lion imperial pilsner - 20 lt : 96.99
+lion stout - 20 lt : 106.99
+meteor blanche - 20 lt : 150.99
+meteor pilsner - 20 lt : 129.99
+meteor wendelinus blonde - 20 lt : 156.99
+montauk driftwood ale - 20 lt : 111.99
+montauk hop blonde ale - 20 lt : 111.99
+montauk rye pale ale - 20 lt : 119.99
+montauk session ipa - 20 lt : 111.99
+montauk watermelon ale - 20 lt : 111.99
+montauk wave chaser ipa - 20 lt : 111.99
+moody tongue baltic porter - 20 lt : 199.99
+new city ginger beer - 20 lt : 129.99
+new city mule - 20 lt : 129.99
+nickel brook* headstock ipa - 20 lt : 169.99
+port jeff beach beer - 20 lt : 114.99
+port jeff birra denicola - 20 lt : 114.99
+port jeff boo brew - 20 lt : 114.99
+port jeff cold north wind - 20 lt : 123.99
+port jeff party boat - 20 lt : 114.99
+port jeff schooner pale - 20 lt : 114.99
+radeberger - 20 lt : 116.99
+radiant pig junior ipa - 20 lt : 119.99
+radiant pig save the robots - 20 lt : 134.99
+river horse citrus maximus - 20 lt : 121.99
+river horse ipa - 20 lt : 100.99
+river horse oatmeal milk stout - 20 lt : 121.99
+river horse roly poly - 20 lt : 100.99
+river horse tripel - 20 lt : 121.99
+saratoga **ipa** - 20 lt : 86.99
+saratoga lager - 20 lt : 86.99
+saratoga pilsner - 20 lt : 86.99
+saucony creek* pitchfork & overalls - 20 lt : 114.99
+schlafly caraway ipa - 20 lt : 126.99
+schlafly coconut creme ale - 20 lt : 126.99
+schlafly kolsch - 20 lt : 100.99
+schlafly white lager - 20 lt : 100.99
+speakeasy baby daddy - 20 lt : 111.99
+speakeasy prohibition - 20 lt : 111.99
+ufo cranbeery - 20 lt : 90.99
+ufo pumpkin - 20 lt : 90.99
+ufo white - 20 lt : 90.99
+ufo winter blonde - 20 lt : 90.99
+uinta birthday suit - 20 lt : 186.99
+uinta hop nosh ipa - 20 lt : 110.99
+uinta lime pils - 20 lt : 110.99
+uinta tangerine hop nosh - 20 lt : 110.99
+warflag grandmaster ipa - 20 lt : 114.99
+warflag lady justice stout - 20 lt : 114.99
+warflag pilsner - 20 lt : 111.99

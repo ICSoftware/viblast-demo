@@ -1,6 +1,7 @@
 // window.VIDEOJS_NO_DYNAMIC_STYLE = true;
 // ffprobe -v error -sexagesimal -select_streams V:0 -show_entries stream '/Users/gradutsky/Documents/transcodes/SMPTE_100-BTC.mov'
 // ffmpeg -hide_banner -y -loglevel verbose -i ~/Documents/transcodes/SMPTE_100-BTC.mov -c:v hevc -b:v 128k -r 23.976023976023978 -bufsize 24215311 -flags +cgop -g 30 -hls_time 3 -hls_list_size 0 ~/Applications/video.js-demo/dist/media/SMPTE_100-BTC.m3u8
+// ffmpeg -hide_banner -y -loglevel verbose -i ~/Documents/transcodes/A003C003_170726_R4RW-BTCProRes422.mov -c:v libx264 -b:v 30000k -r 23.976023976023978 -bufsize 2421531 -flags +cgop -g 0 -hls_time 1 -hls_list_size 0 -movflags +faststart ~/Applications/video.js-demo/dist/media/SMPTE_100-BTC.m3u8
 
 require('!style-loader!css-loader!video.js/dist/video-js.css')
 export const videojs = require('video.js');
@@ -13,23 +14,26 @@ const videoTagId = 'player';
 const playerOptions = {
   controls: true,
   autoplay: true,
-  fluid: true,
+  fluid: false,
   preload: 'metadata',
-  playbackRates: [0.5, 1, 1.5, 2],
-  controlBar: {
-    children: {
-      'playToggle': {},
-      'progressControl': {},
-      'remainingTimeDisplay': {},
-      'playbackRateMenuButton': {},
-      'fullscreenToggle': {},
-    }
-  }
+  playbackRates: [0.5, 1, 1.5, 2]
+  // controlBar: {
+  //   children: {
+  //     'playToggle': {},
+  //     'currentTimeDisplay': {},
+  //     'progressControl': {},
+  //     'remainingTimeDisplay': false,
+  //     'timeDisplay': false,
+  //     'durationDisplay': {},
+  //     'playbackRateMenuButton': {},
+  //     'fullscreenToggle': {},
+  //   }
+  // }
 };
 
 // Player hook
 videojs.hook('beforesetup', function(videoEl, options) {
-  videoEl.className += 'video-js';
+  // videoEl.className += 'video-js';
   options.autoplay = false;
   return options;
 });
@@ -73,15 +77,16 @@ export let player = videojs(videoTagId, playerOptions, function() {
 player.src({
   // src: '//vjs.zencdn.net/v/oceans.mp4',
   // src: 'media/A_day_at_the_races_fixed_short.mp4',
-  src: 'media/SMPTE_100-BTC.m3u8',
-  // type: 'video/mp4'
+  // src: 'media/SMPTE_100-BTC.m3u8',
+  // src: 'media/SMPTE_100-BTC.mpd',
   // src: 'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8',
-  type: 'application/x-mpegURL'
-  // type: 'application/vnd.apple.mpegurl'
   // src: 'https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd',
   // src: 'https://media.axprod.net/TestVectors/v7-MultiDRM-MultiKey/Manifest_1080p.mpd',
-  // src: 'http://rdmedia.bbc.co.uk/dash/ondemand/testcard/1/client_manifest-events.mpd',
-  // type: 'application/dash+xml'
+  src: 'http://rdmedia.bbc.co.uk/dash/ondemand/testcard/1/client_manifest-events.mpd',
+  // type: 'video/mp4'
+  // type: 'application/vnd.apple.mpegurl'
+  // type: 'application/x-mpegURL'
+  type: 'application/dash+xml'
 });
 
 // document.querySelector('#unload-player').addEventListener('click', function unloadVideojs() {
